@@ -1,17 +1,19 @@
 import {
-    _getUsers,
+  _getUsers,
     _getQuestions,
     _saveQuestion,
     _saveQuestionAnswer,
   } from './_DATA.js'
   
-  export function login () {
+  export function login (username, pass) {
     return Promise.all([
-      _getUsers(),
-    ]).then(([users, tweets]) => ({
-      users,
-      tweets,
-    }))
+      _getUsers(username),
+    ]).then(([users]) => {
+      if (users.password===pass) {
+        return true;
+      }
+      return false;      
+    })
   }
   
   export function saveQuestion (info) {

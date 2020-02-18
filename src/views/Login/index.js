@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Input, Submit } from './styles';
-import { Redirect } from 'react-router-dom';
+import { loginUser } from '../../actions/login';
 
 class Login extends Component {
+    handleSubmit (e) {
+        e.preventDefault();
+        const { dispatch } = this.props;
+        const { email, password } = this;
+        dispatch(loginUser(
+            email.value,
+            password.value,
+        ));
+    }
+
     render () {
-        return (
+        return (            
             <div>
-                <Input type='email' />
-                <Input type='password' />
-                <Submit>Entrar</Submit>
+                <Input type='email' ref={(input) => this.email = input} />
+                <Input type='password' ref={(input) => this.password = input} />
+                <Submit onClick={evt => this.handleSubmit(evt)}>Entrar</Submit>
             </div>
         )
-    }
-}
-
-const mapStateToProps = ({ email }, props) => {
-    return {
-        email,
     }
 }
 

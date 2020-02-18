@@ -1,26 +1,21 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { handleInitialData } from './actions/login';
 import LoadingBar from 'react-redux-loading';
 import Login from './views/Login/';
 import Home from './views/Home/';
 import Nav from './components/Nav/';
+import Error from './components/Error/';
 
 class App extends Component {
-  componentDidMount () {
-    //this.props.dispatch(handleInitialData());
-  }
-
   render() {
-    const { authedUser, loading } = this.props;
+    const { authedUser } = this.props;
     
     return (
       <Router>
         <Fragment>
           <LoadingBar />
           <div className='container'>      
-            {loading && 
             <Fragment>
               {authedUser && <Nav />}
               <div>
@@ -29,7 +24,8 @@ class App extends Component {
                 </Route>
                 <Route path='/home' component={Home} />
               </div>
-            </Fragment>}
+              <Error />
+            </Fragment>
           </div>
         </Fragment>
       </Router>
@@ -37,7 +33,7 @@ class App extends Component {
   }
 }
 
-function mapStateToProps ({ authedUser }) {
+function mapStateToProps ({ authedUser, error }) {
   return {
     loading: authedUser !== null,
     authedUser: authedUser !== null && authedUser !== undefined,

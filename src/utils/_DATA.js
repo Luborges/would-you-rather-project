@@ -3,6 +3,7 @@ let users = {
       id: 'sarahedo',
       name: 'Sarah Edo',
       avatarURL: '../../images/snow.jpg',
+      password: '#123',
       answers: {
         "8xf0y6ziyjabvozdd253nd": 'optionOne',
         "6ni6ok3ym7mf1p33lnez": 'optionOne',
@@ -15,6 +16,7 @@ let users = {
       id: 'tylermcginnis',
       name: 'Tyler McGinnis',
       avatarURL: '../../images/tyler.jpg',
+      password: 'pass',
       answers: {
         "vthrdm985a262al8qx3do": 'optionOne',
         "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -25,6 +27,7 @@ let users = {
       id: 'johndoe',
       name: 'John Doe',
       avatarURL: '../../images/leaf.jpg',
+      password: 'abc@210',
       answers: {
         "xj352vofupe1dqz9emx13r": 'optionOne',
         "vthrdm985a262al8qx3do": 'optionTwo',
@@ -119,9 +122,12 @@ let users = {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
   }
   
-  export function _getUsers () {
+  export function _getUsers (username) {
     return new Promise((res, rej) => {
-      setTimeout(() => res({...users}), 1000)
+      if (username) {
+        setTimeout(() => res({...users[username]}), 1000)
+      }
+      setTimeout(() => res({...users}), 1000)      
     })
   }
   
