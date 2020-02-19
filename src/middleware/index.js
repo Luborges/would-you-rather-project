@@ -1,8 +1,10 @@
 import logger from './logger';
+import verifyAuthentication from './verifyAuthentication';
 import thunk from 'redux-thunk';
 import { applyMiddleware } from 'redux';
 
 export default applyMiddleware(
     thunk,
+    verifyAuthentication,
     logger
 );
