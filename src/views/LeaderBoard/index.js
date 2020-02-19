@@ -4,15 +4,17 @@ import { connect } from 'react-redux';
 import { Container } from './styles';
 
 /*
-    Answered Questions
-	Unanswered Questions
+    User:
+		Answered Questions
+		Created Questions
+		Score
 */
 
-class Home extends Component {
+class LeaderBoard extends Component {
     render () {
         return (
             <Container>
-                Home
+                Leader Board
             </Container>
         )
     }
@@ -24,4 +26,4 @@ const mapStateToProps = ({ email }, props) => {
     }
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(LeaderBoard);

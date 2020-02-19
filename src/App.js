@@ -15,7 +15,7 @@ class App extends Component {
       <Router>
         <Fragment>
           <LoadingBar />
-          <div className='container'>      
+          <div className='container'>
             <Fragment>
               {authedUser && <Nav />}
               <div>

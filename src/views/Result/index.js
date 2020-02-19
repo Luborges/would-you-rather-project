@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import { Redirect } from 'react-router-dom';
+
 import { Container } from './styles';
 
 /*
-    Answered Questions
-	Unanswered Questions
+    Result
+	Percentage
+	Total votes
 */
 
-class Home extends Component {
+class Result extends Component {
     render () {
         return (
             <Container>
-                Home
+                Result
             </Container>
         )
     }
@@ -24,4 +26,4 @@ const mapStateToProps = ({ email }, props) => {
     }
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(Result);
