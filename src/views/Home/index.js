@@ -10,6 +10,7 @@ import { Container } from './styles';
 
 class Home extends Component {
     render () {
+        console.log(this.props.questionsId);
         return (
             <Container>
                 Home
@@ -18,9 +19,9 @@ class Home extends Component {
     }
 }
 
-const mapStateToProps = ({ email }, props) => {
+function mapStateToProps ({ questions }) {
     return {
-        email,
+        questionsId: Object.keys(questions).sort((a, b) => questions[b].timestamp - questions[a].timestamp),
     }
 }
 

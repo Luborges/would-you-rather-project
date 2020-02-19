@@ -1,15 +1,22 @@
-import { login } from '../utils/api';
+import { login, getQuestions } from '../utils/api';
 import { setAuthedUser } from './authedUser';
 import { setError } from './error';
-//import { showLoading, hideLoading } from 'react-redux-loading';
+import { showLoading, hideLoading } from 'react-redux-loading';
+import { receiveQuestions } from './questions';
 
-export function loginUser ( username, password ) {
+export const loginUser = ( username, password ) => {
     return async (dispatch) => {
         return await login( username, password )
             .then(( logged ) => {
                 if (logged){
                     dispatch(setError(''));
-                    dispatch(setAuthedUser(username));
+                    dispatch(showLoading());
+                    getQuestions()
+                        .then(( questions ) => {
+                            dispatch(receiveQuestions(questions));
+                            dispatch(setAuthedUser(username));
+                            dispatch(hideLoading());
+                        })
                 }
                 else{
                     dispatch(setError('Invalid Login'));
