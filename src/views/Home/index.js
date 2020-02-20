@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import { Redirect } from 'react-router-dom';
 import QuestionCard from '../../components/QuestionCard';
-import { Container } from './styles';
+import { Container, SelectQuestions } from './styles';
 
 /*
     Answered Questions
@@ -10,17 +10,28 @@ import { Container } from './styles';
 */
 
 class Home extends Component {
+    constructor() {
+        super();
+        this.state = {
+            answeredSelect: false,
+        }
+    }
+
     render () {
         const { questionsAnswered, questionsUnanswered } = this.props;
+        const { answeredSelect } = this.state;
         return (
             <Container>
-                Answered
-                {questionsAnswered.map((item, i) => 
-                    <QuestionCard key={'question_card_'+i} question={item} />)}
-
-                Unanswered
-                {questionsUnanswered.map((item, i) => 
-                <QuestionCard key={'question_card_'+i} question={item} />)}
+                <SelectQuestions style={{backgroundColor: answeredSelect ? 'blue' : 'red' }}
+                    onClick={() => this.setState({answeredSelect: true})}>Answered</SelectQuestions>
+                <SelectQuestions style={{backgroundColor: !answeredSelect ? 'blue' : 'red' }}
+                    onClick={() => this.setState({answeredSelect: false})}>Unanswered</SelectQuestions>
+                {answeredSelect ?
+                    questionsAnswered.map((item, i) => 
+                        <QuestionCard key={'question_card_'+i} question={item} />)
+                    :
+                    questionsUnanswered.map((item, i) => 
+                        <QuestionCard key={'question_card_'+i} question={item} />)}
             </Container>
         )
     }
