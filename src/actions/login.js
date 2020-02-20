@@ -13,8 +13,8 @@ export const loginUser = ( username, password ) => {
                     dispatch(showLoading());
                     getQuestions()
                         .then(( questions ) => {
-                            dispatch(receiveQuestions(questions));
                             dispatch(setAuthedUser(username));
+                            dispatch(receiveQuestions(questions));
                             dispatch(hideLoading());
                         })
                 }

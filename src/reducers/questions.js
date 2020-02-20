@@ -12,7 +12,7 @@ export default function questions (state = null, action) {
             }
         }
     }
-    if (actions[action.type]){
+    if (actions[action.type]) {
         return actions[action.type]();
     }
     return state;
