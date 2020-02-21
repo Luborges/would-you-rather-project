@@ -11,8 +11,8 @@ export default function Nav () {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/play' exact activeClassName='active'>
-                        Play
+                    <NavLink to='/new' exact activeClassName='active'>
+                        New
                     </NavLink>
                 </li>
             </ul>

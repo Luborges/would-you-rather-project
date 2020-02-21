@@ -7,6 +7,7 @@ import Home from './views/Home/';
 import Game from './views/Game/';
 import Nav from './components/Nav/';
 import Error from './components/Error/';
+import NewQuestion from './views/NewQuestion';
 
 class App extends Component {
   render() {
@@ -25,6 +26,7 @@ class App extends Component {
                 </Route>
                 <Route path='/home' component={Home} />
                 <Route path='/game/:id' component={Game} />
+                <Route path='/new' component={NewQuestion} />
               </div>
               <Error />
             </Fragment>

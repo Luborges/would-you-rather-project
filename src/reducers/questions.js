@@ -3,7 +3,12 @@ import { ADD_QUESTION, RECEIVE_QUESTIONS, VOTE } from '../actions/questions';
 export default function questions (state = null, action) {
     const actions = {
         [ADD_QUESTION]: () => {
-            return action.id;
+            const { question } = action;
+            return {
+                ...state,
+                ...state.questions,
+                [question.id]: question   
+            };
         },
         [RECEIVE_QUESTIONS]: () => {
             return {
