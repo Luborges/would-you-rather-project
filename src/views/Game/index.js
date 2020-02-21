@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import { Redirect } from 'react-router-dom';
-import { Radio, Submit } from './styles';
+import { Radio, Button } from './styles';
 import { vote } from '../../actions/questions';
 
 /*
@@ -13,8 +13,7 @@ import { vote } from '../../actions/questions';
 */
 
 class Game extends Component {
-    handleSubmit (e) {
-        e.preventDefault();
+    handleVote () {
         const { dispatch, question, authedUser } = this.props;
         const { optionOne, optionTwo } = this;
         if (optionOne.checked || optionTwo.checked) {
@@ -28,7 +27,7 @@ class Game extends Component {
 
     render () {
         const { question, selectedOption } = this.props;
-        const { handleSubmit } = this;
+
         return (
             <div>
                 Would you rather...
@@ -44,7 +43,7 @@ class Game extends Component {
                             {question.optionTwo.text}
                     </div>
                 }
-                <Submit type='submit' onSubmit={handleSubmit} value='Send' /> 
+                <Button onClick={evt => this.handleVote(evt)}>Send</Button>
             </div>
         )
     }

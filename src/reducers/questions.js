@@ -12,30 +12,19 @@ export default function questions (state = null, action) {
             }
         },
         [VOTE]: () => {
-            console.log({
-                ...state,
-                ...state.questions,
-                ...state.question
-            });
-            let newAction = action;
-            newAction = newAction.questions.optionOne.votes.filter((item) => { return item !== action.authedUser });
-            newAction = newAction.questions.optionOne.votes.filter((item) => { return item !== action.authedUser });
-            
-            if (newAction.questions.optionOne.text===action.option) {
-                newAction.questions.optionOne.votes.push(action.authedUser);
+            action.question.optionOne.votes = action.question.optionOne.votes.filter((item) => { return item !== action.authedUser});
+            action.question.optionOne.votes = action.question.optionTwo.votes.filter((item) => { return item !== action.authedUser});
+            if (action.question.optionOne.text===action.option) {
+                action.question.optionOne.votes.push(action.authedUser);
             }
             else{
-                newAction.questions.optionTwo.votes.push(action.authedUser);
+                action.question.optionTwo.votes.push(action.authedUser);
             }
-            console.log({
-                ...state,
-                ...state.questions,
-                ...newAction.question
-            });
+
             return {
-                ...state,
-                ...state.questions,
-                ...newAction.question
+                ...state, 
+                ...state.questions, 
+                ...{[action.question.id]: action.question}
             }
         },
     }

@@ -4,6 +4,6 @@ export const Radio = styled.input`
 
 `;
 
-export const Submit = styled.input`
+export const Button = styled.button`
     
 `;
