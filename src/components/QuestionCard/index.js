@@ -6,7 +6,7 @@ import { Card } from './styles';
 class QuestionCard extends Component {
     render () {
         const { question } = this.props;
-        console.log(question);
+        //console.log(question);
         return (
             <Card>
                 Home

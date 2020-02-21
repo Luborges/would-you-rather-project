@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import { Redirect } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import QuestionCard from '../../components/QuestionCard';
 import { Container, SelectQuestions } from './styles';
 
@@ -28,10 +28,12 @@ class Home extends Component {
                     onClick={() => this.setState({answeredSelect: false})}>Unanswered</SelectQuestions>
                 {answeredSelect ?
                     questionsAnswered.map((item, i) => 
-                        <QuestionCard key={'question_card_'+i} question={item} />)
+                        <Link key={'answered_card_'+i} to={`/game/${item.id}`}>
+                            <QuestionCard question={item} /></Link>)
                     :
                     questionsUnanswered.map((item, i) => 
-                        <QuestionCard key={'question_card_'+i} question={item} />)}
+                        <Link key={'unanswered_card_'+i} to={`/game/${item.id}`}>
+                            <QuestionCard question={item} /></Link>)}
             </Container>
         )
     }
@@ -48,4 +50,4 @@ function mapStateToProps ({ questions, authedUser }) {
     }
 }
 
-export default connect(mapStateToProps)(Home);
+export default withRouter(connect(mapStateToProps)(Home));

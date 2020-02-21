@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-export const Select = styled.select`
-    
+export const Radio = styled.input`
+
 `;
 
-export const Option = styled.option`
-
+export const Submit = styled.input`
+    
 `;

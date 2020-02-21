@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import LoadingBar from 'react-redux-loading';
 import Login from './views/Login/';
 import Home from './views/Home/';
+import Game from './views/Game/';
 import Nav from './components/Nav/';
 import Error from './components/Error/';
 
@@ -23,6 +24,7 @@ class App extends Component {
                   {authedUser ? <Redirect to="/home" /> : <Login />}
                 </Route>
                 <Route path='/home' component={Home} />
+                <Route path='/game/:id' component={Game} />
               </div>
               <Error />
             </Fragment>
