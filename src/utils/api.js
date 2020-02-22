@@ -17,13 +17,13 @@ import {
   }
   
   export function saveQuestion (info) {
-    return _saveQuestion(info)
+    return _saveQuestion(info);
   }
   
   export function saveQuestionAnswer (info) {
-    return _saveQuestionAnswer(info)
+    return _saveQuestionAnswer(info);
   }
 
-  export function getQuestions (info) {
-    return _getQuestions(info)
+  export async function getQuestions () {
+    return _getQuestions();
   }

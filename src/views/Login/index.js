@@ -19,7 +19,7 @@ class Login extends Component {
             <div>
                 <Input type='email' ref={(input) => this.email = input} />
                 <Input type='password' ref={(input) => this.password = input} />
-                <Submit onClick={evt => this.handleSubmit(evt)}>Entrar</Submit>
+                <Submit onClick={evt => this.handleSubmit(evt)}>Send</Submit>
             </div>
         )
     }

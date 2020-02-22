@@ -13,7 +13,6 @@ class Error extends Component {
 }
 
 function mapStateToProps ({ error }) {
-    console.log(error);
     return {
       error,
     }

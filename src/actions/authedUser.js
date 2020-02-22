@@ -4,5 +4,6 @@ export function setAuthedUser (id) {
     return {
         type: SET_AUTHOR_USER,
         id,
+        disconnect: true,
     }
 }

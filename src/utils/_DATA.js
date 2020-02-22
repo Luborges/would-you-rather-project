@@ -34,6 +34,15 @@ let users = {
         "6ni6ok3ym7mf1p33lnez": 'optionOne'
       },
       questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
+    },
+    lucasborges: {
+      id: 'lucasborges',
+      name: 'Lucas Borges',
+      avatarURL: '../../images/leaf.jpg',
+      password: '123',
+      answers: {
+      },
+      questions: [],
     }
   }
   
