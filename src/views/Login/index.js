@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Input, Submit } from './styles';
+import { Input, Submit, Form, Title, Subtitle, Container } from './styles';
 import { loginUser } from '../../actions/login';
 
 class Login extends Component {
@@ -15,12 +15,16 @@ class Login extends Component {
     }
 
     render () {
-        return (            
-            <div>
-                <Input type='email' ref={(input) => this.email = input} />
-                <Input type='password' ref={(input) => this.password = input} />
-                <Submit onClick={evt => this.handleSubmit(evt)}>Send</Submit>
-            </div>
+        return (       
+            <Container>
+                <Title>Welcome to the Would You Rather App!</Title>
+                <Subtitle>Please sing-in to play</Subtitle>
+                <Form>
+                    <Input type='email' ref={(input) => this.email = input} />
+                    <Input type='password' ref={(input) => this.password = input} />
+                    <Submit onClick={evt => this.handleSubmit(evt)}>Send</Submit>
+                </Form>
+            </Container>
         )
     }
 }

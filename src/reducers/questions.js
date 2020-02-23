@@ -7,7 +7,7 @@ export default function questions (state = null, action) {
             return {
                 ...state,
                 ...state.questions,
-                [question.id]: question   
+                [question.id]: question,
             };
         },
         [RECEIVE_QUESTIONS]: () => {

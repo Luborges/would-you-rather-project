@@ -1,31 +1,65 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { Ul, Li, ListItem, Navbar, LogoutButton, UserIcon, UserContainer } from './styles';
+import { unsetAuthedUser } from '../../actions/authedUser';
+//import { Redirect } from 'react-router-dom';
 
-export default function Nav () {
+const Nav = (props) => {
+    const { user, dispatch } = props;
+
+    const logout = () => {
+        dispatch(unsetAuthedUser);
+        window.location.href = '/';
+    }
+
     return (
-        <nav className='nav'>
-            <ul>
-                <li>
-                    <NavLink to='/home' exact activeClassName='active'>
+        <Navbar>
+            <Ul>
+                <Li>
+                    <NavLink to='/home' exact activeStyle={{
+                            fontWeight: "bold",
+                            color: "black"
+                        }}>
                         Home
                     </NavLink>
-                </li>
-                <li>
-                    <NavLink to='/new' exact activeClassName='active'>
-                        New
+                </Li>
+                <Li>
+                    <NavLink to='/new' exact activeStyle={{
+                            fontWeight: "bold",
+                            color: "black"
+                        }}>
+                        New Question
                     </NavLink>
-                </li>
-                <li>
-                    <NavLink to='/leader-board' exact activeClassName='active'>
+                </Li>
+                <Li>
+                    <NavLink to='/leader-board' exact activeStyle={{
+                            fontWeight: "bold",
+                            color: "black"
+                        }}>
                         Leader Board
                     </NavLink>
-                </li>
-                <li>
-                    <NavLink to='/logout' exact activeClassName='active'>
+                </Li>
+                <ListItem>
+                    Hello, {user && user.name} 
+                    <UserContainer>
+                        {user && <UserIcon src={user ? user.avatarURL : require('../../assets/images/empty.svg')} /> }
+                    </UserContainer>
+                </ListItem>
+                <Li>
+                    <LogoutButton onClick={() => logout()}>
                         Logout
-                    </NavLink>
-                </li>
-            </ul>
-        </nav>
+                    </LogoutButton>
+                </Li>
+            </Ul>
+        </Navbar>
     )
 }
+
+const mapStateToProps = ({ authedUser, users }) => {
+    return {
+        user: users && users[authedUser]
+    }
+}
+
+export default connect(mapStateToProps)(Nav);

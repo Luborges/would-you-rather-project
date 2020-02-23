@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import QuestionCard from '../../components/QuestionCard';
 import { Container, SelectQuestions } from './styles';
 
@@ -22,18 +22,20 @@ class Home extends Component {
         const { answeredSelect } = this.state;
         return (
             <Container>
-                <SelectQuestions style={{backgroundColor: answeredSelect ? 'blue' : 'red' }}
-                    onClick={() => this.setState({answeredSelect: true})}>Answered</SelectQuestions>
-                <SelectQuestions style={{backgroundColor: !answeredSelect ? 'blue' : 'red' }}
-                    onClick={() => this.setState({answeredSelect: false})}>Unanswered</SelectQuestions>
+                <SelectQuestions style={{
+                    backgroundColor: answeredSelect ? '#ddd' : '#fff',
+                    color: answeredSelect ? 'blue' : 'black',
+                }} onClick={() => this.setState({answeredSelect: true})}>Answered</SelectQuestions>
+                <SelectQuestions style={{
+                    backgroundColor: !answeredSelect ? '#ddd' : '#fff',
+                    color: !answeredSelect ? 'blue' : 'black',
+                }} onClick={() => this.setState({answeredSelect: false})}>Unanswered</SelectQuestions>
                 {answeredSelect ?
                     questionsAnswered.map((item, i) => 
-                        <Link key={'answered_card_'+i} to={`/game/${item.id}`}>
-                            <QuestionCard question={item} /></Link>)
+                        <QuestionCard key={'answered_card_'+i} question={item} />)
                     :
                     questionsUnanswered.map((item, i) => 
-                        <Link key={'unanswered_card_'+i} to={`/game/${item.id}`}>
-                            <QuestionCard question={item} /></Link>)}
+                        <QuestionCard key={'unanswered_card_'+i} question={item} />)}
             </Container>
         )
     }

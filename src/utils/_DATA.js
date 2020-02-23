@@ -2,7 +2,7 @@ let users = {
     sarahedo: {
       id: 'sarahedo',
       name: 'Sarah Edo',
-      avatarURL: '../../images/snow.jpg',
+      avatarURL: 'https://i.pinimg.com/originals/ea/55/c7/ea55c775d64b64b927e6eb05dcb5fdf2.jpg',
       password: '#123',
       answers: {
         "8xf0y6ziyjabvozdd253nd": 'optionOne',
@@ -15,7 +15,7 @@ let users = {
     tylermcginnis: {
       id: 'tylermcginnis',
       name: 'Tyler McGinnis',
-      avatarURL: '../../images/tyler.jpg',
+      avatarURL: 'https://i.pinimg.com/originals/55/14/cc/5514cced40ad33c801f2869b8053e040.jpg',
       password: 'pass',
       answers: {
         "vthrdm985a262al8qx3do": 'optionOne',
@@ -26,7 +26,7 @@ let users = {
     johndoe: {
       id: 'johndoe',
       name: 'John Doe',
-      avatarURL: '../../images/leaf.jpg',
+      avatarURL: 'https://vignette.wikia.nocookie.net/prowrestlingbr/images/c/c9/John_Cena_in_2018_%283%29.jpg/revision/latest?cb=20181228002727&path-prefix=pt',
       password: 'abc@210',
       answers: {
         "xj352vofupe1dqz9emx13r": 'optionOne',
@@ -38,7 +38,7 @@ let users = {
     lucasborges: {
       id: 'lucasborges',
       name: 'Lucas Borges',
-      avatarURL: '../../images/leaf.jpg',
+      avatarURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT-XA_ueBy7hbyyGa6_pwzQHYkJO-0iWuc4z_N3p8wiB_wh06wK',
       password: '123',
       answers: {
       },

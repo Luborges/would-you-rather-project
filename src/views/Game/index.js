@@ -1,55 +1,77 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import { Redirect } from 'react-router-dom';
-import { Radio, Button } from './styles';
-import { vote } from '../../actions/questions';
-
-/*
-    Person asking
-	Would you rather...
-	() Choice 1
-	() Choice 2
-	Submit
-*/
+import { 
+    Radio, 
+    Description,
+    Button, 
+    Container, 
+    Title, 
+    Card,
+    RightContainer,
+    RadioDiv,
+} from './styles';
+import { handleVote } from '../../actions/questions';
+import { Redirect } from 'react-router-dom';
+import ImageCard from '../../components/ImageCard';
 
 class Game extends Component {
-    handleVote () {
-        const { dispatch, question, authedUser } = this.props;
-        const { optionOne, optionTwo } = this;
-        if (optionOne.checked || optionTwo.checked) {
-            dispatch(vote(
-                optionOne.checked ? optionOne.value : optionTwo.value,
-                question,
-                authedUser
-            ));
+    constructor () {
+        super();
+        this.state = {
+            toResult: false,
         }
     }
 
+    handleVote () {
+        const { dispatch, question } = this.props;
+        const { optionOne, optionTwo } = this;
+        if (optionOne.checked || optionTwo.checked) {
+            dispatch(handleVote(
+                optionOne.checked ? optionOne.value : optionTwo.value,
+                question
+            ));
+        }
+
+        this.setState({
+            toResult: true,
+        })
+    }
+
     render () {
-        const { question, selectedOption } = this.props;
+        const { question, selectedOption, user } = this.props;
+        const { toResult } = this.state;
+
+        if (toResult) {
+            return <Redirect to={`/result/${question.id}`} />
+        }
 
         return (
-            <div>
-                Would you rather...
+            <Container>
                 {question &&
-                    <div>
-                        <Radio type='radio' name='game' value={question.optionOne.text}
-                            defaultChecked={selectedOption===question.optionOne.text}
-                            ref={(input) => this.optionOne = input} />
-                            {question.optionOne.text}
-                        <Radio type='radio' name='game' value={question.optionTwo.text}
-                            defaultChecked={selectedOption===question.optionTwo.text}
-                            ref={(input) => this.optionTwo = input} />
-                            {question.optionTwo.text}
-                    </div>
+                    <Card>
+                        <ImageCard user={user} />
+                        <RightContainer>
+                            <Title>{user.name} asks:</Title>
+                            <Description>Would you rather...</Description>
+                            <RadioDiv><Radio type='radio' name='game' value={question.optionOne.text}
+                                defaultChecked={selectedOption===question.optionOne.text}
+                                ref={(input) => this.optionOne = input} />
+                                {question.optionOne.text}</RadioDiv>
+                            <RadioDiv><Radio type='radio' name='game' value={question.optionTwo.text}
+                                defaultChecked={selectedOption===question.optionTwo.text}
+                                ref={(input) => this.optionTwo = input} />
+                                {question.optionTwo.text}</RadioDiv>
+                            <Button onClick={evt => this.handleVote(evt)}>Send</Button>
+                        </RightContainer>
+                    </Card>
                 }
-                <Button onClick={evt => this.handleVote(evt)}>Send</Button>
-            </div>
+            </Container>
         )
     }
 }
 
-const mapStateToProps = ({ questions, authedUser }, props) => {
+const mapStateToProps = ({ questions, authedUser, users }, props) => {
     const { id } = props.match.params;
     const question = questions && questions[id];
     const selectedOption = question && (
@@ -62,7 +84,8 @@ const mapStateToProps = ({ questions, authedUser }, props) => {
     return {
         question,
         selectedOption,
-        authedUser
+        authedUser,
+        user: question && users[question.author]
     }
 }
 

@@ -1,5 +1,5 @@
 import {
-  _getUsers,
+    _getUsers,
     _getQuestions,
     _saveQuestion,
     _saveQuestionAnswer,
@@ -14,6 +14,10 @@ import {
       }
       return false;      
     })
+  }
+
+  export function getUsers () {
+    return _getUsers();
   }
   
   export function saveQuestion (info) {
