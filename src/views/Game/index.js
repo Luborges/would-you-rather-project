@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import { Redirect } from 'react-router-dom';
 import { 
     Radio, 
     Description,
@@ -14,6 +13,7 @@ import {
 import { handleVote } from '../../actions/questions';
 import { Redirect } from 'react-router-dom';
 import ImageCard from '../../components/ImageCard';
+import Error404 from '../../components/Error/Error404';
 
 class Game extends Component {
     constructor () {
@@ -49,22 +49,25 @@ class Game extends Component {
         return (
             <Container>
                 {question &&
-                    <Card>
-                        <ImageCard user={user} />
-                        <RightContainer>
-                            <Title>{user.name} asks:</Title>
-                            <Description>Would you rather...</Description>
-                            <RadioDiv><Radio type='radio' name='game' value={question.optionOne.text}
-                                defaultChecked={selectedOption===question.optionOne.text}
-                                ref={(input) => this.optionOne = input} />
-                                {question.optionOne.text}</RadioDiv>
-                            <RadioDiv><Radio type='radio' name='game' value={question.optionTwo.text}
-                                defaultChecked={selectedOption===question.optionTwo.text}
-                                ref={(input) => this.optionTwo = input} />
-                                {question.optionTwo.text}</RadioDiv>
-                            <Button onClick={evt => this.handleVote(evt)}>Send</Button>
-                        </RightContainer>
-                    </Card>
+                    question ?    
+                        <Card>
+                            <ImageCard user={user} />
+                            <RightContainer>
+                                <Title>{user.name} asks:</Title>
+                                <Description>Would you rather...</Description>
+                                <RadioDiv><Radio type='radio' name='game' value={question.optionOne.text}
+                                    defaultChecked={selectedOption===question.optionOne.text}
+                                    ref={(input) => this.optionOne = input} />
+                                    {question.optionOne.text}</RadioDiv>
+                                <RadioDiv><Radio type='radio' name='game' value={question.optionTwo.text}
+                                    defaultChecked={selectedOption===question.optionTwo.text}
+                                    ref={(input) => this.optionTwo = input} />
+                                    {question.optionTwo.text}</RadioDiv>
+                                <Button onClick={evt => this.handleVote(evt)}>Send</Button>
+                            </RightContainer>
+                        </Card>
+                    :
+                    <Error404 message={'Question'} />
                 }
             </Container>
         )

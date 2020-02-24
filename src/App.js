@@ -15,23 +15,30 @@ import { Wrapper } from './styles';
 class App extends Component {
   render() {
     const { authedUser } = this.props;
-    
+
+    if (!authedUser && window.location.pathname!=='/') {
+      return (
+        <Wrapper>
+          <Login />
+        </Wrapper>
+        )
+    }
+
     return (
       <Router>
         <Fragment>
           <LoadingBar />
-          <div className='container'>
+          <div>
             <Fragment>
               {authedUser && <Nav />}
               <Wrapper>
-                <Route exact path="/" component={Login}>
-                  {authedUser ? <Redirect to="/home" /> : <Login />}
-                </Route>
+                <Route exact path="/" component={Login} />
+                {authedUser && window.location.pathname==='/' && <Redirect to="/home" />}
                 <Route path='/home' component={Home} />
-                <Route path='/game/:id' component={Game} />
-                <Route path='/new' component={NewQuestion} />
+                <Route path='/questions/:id' component={Game} />
+                <Route path='/add' component={NewQuestion} />
                 <Route path='/result/:id' component={Result} />
-                <Route path='/leader-board' component={LeaderBoard} />
+                <Route path='/leaderboard' component={LeaderBoard} />
               </Wrapper>
               <Error />
             </Fragment>
@@ -42,8 +49,8 @@ class App extends Component {
   }
 }
 
-function mapStateToProps ({ authedUser, error }) {
-  return {
+function mapStateToProps ({ authedUser }) {
+   return {
     loading: authedUser !== null,
     authedUser: authedUser !== null && authedUser !== undefined,
   }

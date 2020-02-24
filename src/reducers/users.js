@@ -18,6 +18,7 @@ export default function users (state = null, action) {
         [USER_VOTE]: () => {
             const { question, authedUser, option } = action;
             state[authedUser].answers = {
+                ...state[authedUser].answers,
                 [question.id]: question.optionOne.text === option ? 'optionOne' : 'optionTwo',
             };
             

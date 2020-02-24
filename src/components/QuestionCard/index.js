@@ -24,7 +24,7 @@ class QuestionCard extends Component {
                         <Title>Would you rather</Title>
                         <Option>...{question.optionOne.text}...</Option>
                         <Button>
-                            <Link to={`/game/${question.id}`}>
+                            <Link to={`/questions/${question.id}`}>
                                 View Pull
                             </Link>
                         </Button>

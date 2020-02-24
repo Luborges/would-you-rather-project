@@ -12,6 +12,7 @@ import {
 } from './styles';
 import ImageCard from '../../components/ImageCard';
 import 'semantic-ui-css/semantic.min.css';
+import Error404 from '../../components/Error/Error404';
 
 class Result extends Component {
     render () {
@@ -28,25 +29,29 @@ class Result extends Component {
         
         return (
             <Container>
-                <Card>
-                <ImageCard user={user} />
-                    <RightContainer>
-                        <Title>Results:</Title>
-                        <BoxOption>
-                            {optionOne.votes.includes(authedUser) && <Vote>Your<br />vote</Vote>}
-                            <Question>Would you rather {optionOne.text}?</Question>
-                            <Progress percent={percentageOne} progress />
-                            {optionOne.votes.length} out of {total} votes
+                {question ?
+                    <Card>
+                    <ImageCard user={user} />
+                        <RightContainer>
+                            <Title>Results:</Title>
+                            <BoxOption>
+                                {optionOne.votes.includes(authedUser) && <Vote>Your<br />vote</Vote>}
+                                <Question>Would you rather {optionOne.text}?</Question>
+                                <Progress percent={percentageOne} progress />
+                                {optionOne.votes.length} out of {total} votes
 
-                        </BoxOption>
-                        <BoxOption>
-                            {optionTwo.votes.includes(authedUser) && <Vote>Your<br />vote</Vote>}
-                            <Question>Would you rather {optionTwo.text}?</Question>
-                            <Progress percent={percentageTwo} progress />
-                            {optionTwo.votes.length} out of {total} votes
-                        </BoxOption>
-                    </RightContainer>
-                </Card>
+                            </BoxOption>
+                            <BoxOption>
+                                {optionTwo.votes.includes(authedUser) && <Vote>Your<br />vote</Vote>}
+                                <Question>Would you rather {optionTwo.text}?</Question>
+                                <Progress percent={percentageTwo} progress />
+                                {optionTwo.votes.length} out of {total} votes
+                            </BoxOption>
+                        </RightContainer>
+                    </Card>
+                    :
+                    <Error404 message={'Question'} />
+                }
             </Container>
         )
     }
@@ -56,7 +61,7 @@ const mapStateToProps = ({ questions, authedUser, users }, props) => {
     const { id } = props.match.params;
     return {
         question: questions && questions[id],
-        user: users && users[questions[id].author],
+        user: users && questions[id] && users[questions[id].author],
         authedUser
     }
 }

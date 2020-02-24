@@ -14,11 +14,11 @@ export const loginUser = ( username, password ) => {
                     dispatch(showLoading());
                     getQuestions()
                         .then(( questions ) => {
-                            dispatch(setAuthedUser(username));
                             dispatch(receiveQuestions(questions));
                             getUsers()
                                 .then(( users ) => {
                                     dispatch(receiveUsers(users));
+                                    dispatch(setAuthedUser(username));
                                     dispatch(hideLoading());
                                 })
                         })

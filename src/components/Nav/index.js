@@ -25,7 +25,7 @@ const Nav = (props) => {
                     </NavLink>
                 </Li>
                 <Li>
-                    <NavLink to='/new' exact activeStyle={{
+                    <NavLink to='/add' exact activeStyle={{
                             fontWeight: "bold",
                             color: "black"
                         }}>
@@ -33,7 +33,7 @@ const Nav = (props) => {
                     </NavLink>
                 </Li>
                 <Li>
-                    <NavLink to='/leader-board' exact activeStyle={{
+                    <NavLink to='/leaderboard' exact activeStyle={{
                             fontWeight: "bold",
                             color: "black"
                         }}>
