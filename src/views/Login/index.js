@@ -7,9 +7,9 @@ class Login extends Component {
     handleSubmit (e) {
         e.preventDefault();
         const { dispatch } = this.props;
-        const { email, password } = this;
+        const { username, password } = this;
         dispatch(loginUser(
-            email.value,
+            username.value,
             password.value,
         ));
     }
@@ -20,8 +20,8 @@ class Login extends Component {
                 <Title>Welcome to the Would You Rather App!</Title>
                 <Subtitle>Please sing-in to play</Subtitle>
                 <Form>
-                    <Input type='email' ref={(input) => this.email = input} />
-                    <Input type='password' ref={(input) => this.password = input} />
+                    <Input type='text' ref={(input) => this.username = input} placeholder={'Username'} />
+                    <Input type='password' ref={(input) => this.password = input} placeholder={'Password'} />
                     <Submit onClick={evt => this.handleSubmit(evt)}>Send</Submit>
                 </Form>
             </Container>
